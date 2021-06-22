@@ -25,12 +25,17 @@ unzip ${ZIP}
 rm ${ZIP}
 
 cp ${MANIFEST} ${DIR}
-sed -ie "s/\${VER}/${VER}/" ${DIR}/library.json
+
+sed -i '' -e "/^[[:space:]]*\/\//d;s/\${VER}/${VER}/" ${DIR}/library.json
 
 set +x
 
 echo ""
-echo "You can publish the library now by running"
+echo "Archive the package for local testing by running"
+echo ""
+echo "  pio package pack ${DIR}"
+echo ""
+echo "Publish the library by running"
 echo ""
 echo "  pio package publish ${DIR}"
 echo ""

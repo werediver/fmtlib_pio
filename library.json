@@ -15,8 +15,11 @@
       "src/*"
     ],
     "exclude": [
+      // Requires POSIX
       "include/fmt/os.h",
-      "src/os.cc"
+      "src/os.cc",
+      // C++20 module
+      "src/fmt.cc"
     ]
   },
   "frameworks": "*",
