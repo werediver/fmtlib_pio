@@ -10,32 +10,30 @@ if [ "$#" -lt 1 ]; then
   echo ""
   echo "  https://github.com/fmtlib/fmt/releases"
   echo ""
-  exit
+  exit 1
 fi
 
 VER="$1" # fmt release version (tag) to download, e.g. "7.1.3"
 DIR="fmt-${VER}"
 ZIP="${DIR}.zip"
+MANIFEST_TEMPLATE="library.jsonc"
 MANIFEST="library.json"
 
 set -x
 
-wget https://github.com/fmtlib/fmt/releases/download/${VER}/${ZIP}
-unzip ${ZIP}
-rm ${ZIP}
+wget "https://github.com/fmtlib/fmt/releases/download/${VER}/${ZIP}"
+unzip "${ZIP}"
+rm "${ZIP}"
 
-cp ${MANIFEST} ${DIR}
+cp "${MANIFEST_TEMPLATE}" "${DIR}/${MANIFEST}"
+sed -i '' -e "/^[[:space:]]*\/\//d;s/\${VER}/${VER}/" "${DIR}/${MANIFEST}"
 
-sed -i '' -e "/^[[:space:]]*\/\//d;s/\${VER}/${VER}/" ${DIR}/library.json
+pio package pack "${DIR}"
 
 set +x
 
 echo ""
-echo "Archive the package for local testing by running"
+echo "Test the archived library locally and publish it by running"
 echo ""
-echo "  pio package pack ${DIR}"
-echo ""
-echo "Publish the library by running"
-echo ""
-echo "  pio package publish ${DIR}"
+echo "  pio package publish ${DIR}.tar.gz"
 echo ""
