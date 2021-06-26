@@ -1,3 +1,5 @@
+[![PlatformIO fmt](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=PlatformIO&prefix=fmt%20&query=%24.versions%5B0%5D.name&url=https%3A%2F%2Fapi.registry.platformio.org%2Fv3%2Fpackages%2Fwerediver%2Flibrary%2Ffmt)](https://platformio.org/lib/show/12455/fmt)
+
 # fmtlib_pio
 
 This repository contains a [PlatformIO library manifest](https://docs.platformio.org/en/latest//librarymanager/config.html) template for [fmtlib/fmt](https://github.com/fmtlib/fmt) (a modern C++ string formatting library) and a shell-script to fetch an fmt release and publish it to the [PlatformIO library registry](https://platformio.org/lib).
